@@ -4,15 +4,15 @@ import { NextRequest, NextResponse } from "next/server"
 import webpush from "web-push"
 import { getJobs } from "@/lib/getJobs"
 
-// Configure VAPID details
-webpush.setVapidDetails(
-  "mailto:sadijubairr@gmail.com",
-  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
-  process.env.VAPID_PRIVATE_KEY!
-)
-
 export async function POST(req: NextRequest) {
   try {
+    // Configure VAPID at runtime (not build time) so env vars are available
+    webpush.setVapidDetails(
+      "mailto:sadijubairr@gmail.com",
+      process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
+      process.env.VAPID_PRIVATE_KEY!
+    )
+
     // Basic secret header validation
     const secret = req.headers.get("x-revalidate-secret")
     if (process.env.REVALIDATE_SECRET && secret !== process.env.REVALIDATE_SECRET) {
