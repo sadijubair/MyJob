@@ -1,0 +1,219 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  /* Material 3 Light Theme Colors (Tonal Blue/Indigo) */
+  --primary: #005faf;
+  --on-primary: #ffffff;
+  --primary-container: #d4e3ff;
+  --on-primary-container: #001c3b;
+
+  --secondary: #535f70;
+  --on-secondary: #ffffff;
+  --secondary-container: #d7e3f7;
+  --on-secondary-container: #101c2b;
+
+  --surface: #f9f9fc;
+  --on-surface: #1a1c1e;
+  --surface-container-low: #f0f1f8;
+  --surface-container: #eaeaef;
+  --surface-container-high: #e2e2e9;
+  --surface-variant: #e1e2ec;
+  --on-surface-variant: #43474e;
+
+  --outline: #73777f;
+  --outline-variant: #c3c7cf;
+
+  /* Harmonized Status Colors (M3 soft tones) */
+  --m3-rose: #ba1a1a;
+  --m3-rose-container: #ffdad6;
+  --m3-on-rose-container: #410002;
+
+  --m3-amber: #7e5700;
+  --m3-amber-container: #ffdeb7;
+  --m3-on-amber-container: #281900;
+
+  --m3-emerald: #006c4c;
+  --m3-emerald-container: #82f9c7;
+  --m3-on-emerald-container: #002114;
+
+  --m3-slate: #565e71;
+  --m3-slate-container: #dae2f9;
+  --m3-on-slate-container: #131b2c;
+
+  /* Radius */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+  /* Material 3 Dark Theme Colors */
+  --primary: #adc6ff;
+  --on-primary: #002e5a;
+  --primary-container: #004582;
+  --on-primary-container: #d4e3ff;
+
+  --secondary: #bec6dc;
+  --on-secondary: #283141;
+  --secondary-container: #3e4759;
+  --on-secondary-container: #dae2f9;
+
+  --surface: #111318;
+  --on-surface: #e3e2e6;
+  --surface-container-low: #1a1c1e;
+  --surface-container: #1d2024;
+  --surface-container-high: #272a2f;
+  --surface-variant: #43474e;
+  --on-surface-variant: #c3c7cf;
+
+  --outline: #8d9199;
+  --outline-variant: #43474e;
+
+  /* Harmonized Status Colors (Dark mode M3 tones) */
+  --m3-rose: #ffb4ab;
+  --m3-rose-container: #93000a;
+  --m3-on-rose-container: #ffdad6;
+
+  --m3-amber: #fbbc49;
+  --m3-amber-container: #5f4100;
+  --m3-on-amber-container: #ffdeb7;
+
+  --m3-emerald: #65dcac;
+  --m3-emerald-container: #005238;
+  --m3-on-emerald-container: #82f9c7;
+
+  --m3-slate: #bec6dc;
+  --m3-slate-container: #3f4759;
+  --m3-on-slate-container: #dae2f9;
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  
+  --color-surface: var(--surface);
+  --color-on-surface: var(--on-surface);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  --color-m3-rose: var(--m3-rose);
+  --color-m3-rose-container: var(--m3-rose-container);
+  --color-m3-on-rose-container: var(--m3-on-rose-container);
+  
+  --color-m3-amber: var(--m3-amber);
+  --color-m3-amber-container: var(--m3-amber-container);
+  --color-m3-on-amber-container: var(--m3-on-amber-container);
+  
+  --color-m3-emerald: var(--m3-emerald);
+  --color-m3-emerald-container: var(--m3-emerald-container);
+  --color-m3-on-emerald-container: var(--m3-on-emerald-container);
+  
+  --color-m3-slate: var(--m3-slate);
+  --color-m3-slate-container: var(--m3-slate-container);
+  --color-m3-on-slate-container: var(--m3-on-slate-container);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+}
+
+/* Base resets & transition rules */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: var(--font-sans), sans-serif;
+  transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--outline-variant);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--outline);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* App-wide transition defaults */
+* {
+  transition: background-color 0.15s cubic-bezier(0.2, 0, 0, 1), 
+              border-color 0.15s cubic-bezier(0.2, 0, 0, 1), 
+              color 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Tap response simulation (similar to Android ink ripple click effect) */
+button, 
+[role="button"] {
+  touch-action: manipulation;
+  transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1), background-color 0.15s ease, opacity 0.15s ease;
+}
+button:active {
+  transform: scale(0.97);
+}
+
+/* Dynamic design backgrounds */
+.dark body {
+  background-image: 
+    radial-gradient(circle at 100% 0%, rgba(173, 198, 255, 0.04), transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(101, 220, 172, 0.03), transparent 30%);
+}
+
+@keyframes tab-transition {
+  from {
+    opacity: 0;
+    transform: scale(0.985) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-tab-transition {
+  animation: tab-transition 0.22s cubic-bezier(0.05, 0.7, 0.1, 1) forwards;
+}
