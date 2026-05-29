@@ -4,7 +4,7 @@ import { JobGrid } from "@/components/JobGrid"
 import { getJobs } from "@/lib/getJobs"
 import { Suspense } from "react"
 
-export const revalidate = 3600
+export const dynamic = "force-dynamic"
 
 export default async function FrontendPage() {
   const jobs = await getJobs()

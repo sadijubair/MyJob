@@ -28,36 +28,42 @@ function getUrgency(daysLeft: number): Urgency {
 
 export const getJobs = cache(async function getJobs(): Promise<Job[]> {
   if (!process.env.DATABASE_URI) {
+    console.warn("[getJobs] DATABASE_URI is not set — returning empty jobs array.")
     return []
   }
 
-  const payload = await getPayload({ config })
-  const result = await payload.find({
-    collection: "jobs",
-    limit: 500,
-    sort: "deadline",
-  })
-
-  const today = new Date()
-
-  return result.docs
-    .map((doc) => {
-      const deadline = parseISO(String(doc.deadline))
-      const daysLeft = differenceInCalendarDays(deadline, today)
-
-      return {
-        id: String(doc.id),
-        organization: doc.organization,
-        postName: doc.postName,
-        numberOfPosts: doc.numberOfPosts,
-        payGrade: doc.payGrade ?? undefined,
-        circularLink: doc.circularLink ?? undefined,
-        applicationFee: doc.applicationFee ?? undefined,
-        applicationLink: doc.applicationLink,
-        deadline: deadline.toISOString(),
-        daysLeft,
-        urgency: getUrgency(daysLeft),
-      }
+  try {
+    const payload = await getPayload({ config })
+    const result = await payload.find({
+      collection: "jobs",
+      limit: 500,
+      sort: "deadline",
     })
-    .filter((job) => job.daysLeft >= -5)
+
+    const today = new Date()
+
+    return result.docs
+      .map((doc) => {
+        const deadline = parseISO(String(doc.deadline))
+        const daysLeft = differenceInCalendarDays(deadline, today)
+
+        return {
+          id: String(doc.id),
+          organization: doc.organization,
+          postName: doc.postName,
+          numberOfPosts: doc.numberOfPosts,
+          payGrade: doc.payGrade ?? undefined,
+          circularLink: doc.circularLink ?? undefined,
+          applicationFee: doc.applicationFee ?? undefined,
+          applicationLink: doc.applicationLink,
+          deadline: deadline.toISOString(),
+          daysLeft,
+          urgency: getUrgency(daysLeft),
+        }
+      })
+      .filter((job) => job.daysLeft >= -5)
+  } catch (error) {
+    console.error("[getJobs] Failed to fetch jobs from database:", error)
+    return []
+  }
 })
